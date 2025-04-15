@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance QR Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            background-color: #f5f5f5;
+            position: relative;
+        }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .back-btn button {
+            padding: 8px 15px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+        /* ... rest of your existing styles ... */
+    </style>
+    <script>
+        function refreshQRCode() {
+            document.getElementById("qrCode").src = "/generate_qr?" + new Date().getTime();
+            document.getElementById("timestamp").innerText = "Last refreshed: " + new Date().toLocaleTimeString();
+        }
+        setInterval(refreshQRCode, 30000);
+
+        function closeWindow() {
+            window.close();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Attendance QR Code</h2>
+        
+        <div class="class-info">
+            <h3>Class Information</h3>
+            <p><strong>Subject:</strong> {{ subject_name }} ({{ subject_code }})</p>
+            <p><strong>Section:</strong> {{ class_section }}</p>
+            <p><strong>Teacher:</strong> {{ teacher_name }}</p>
+            <p><strong>Date:</strong> {{ current_date }}</p>
+        </div>
+        
+        <p>Scan this QR code to mark your attendance</p>
+        <img id="qrCode" src="/generate_qr" alt="Attendance QR Code" />
+        
+        <div class="timestamp" id="timestamp">Last refreshed: Just now</div>
+    </div>
+</body>
+</html>

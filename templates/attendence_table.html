@@ -1,0 +1,36 @@
+<html>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Phone Number</th>
+            <th>Enrollment Number</th>
+            <th>Student Name</th>
+            <th>Timestamp</th>
+            <th>Subject Code</th>
+            <th>Subject Name</th>
+            <th>Teacher</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+        <tr>
+            <td>{{ record['Phone Number'] }}</td>
+            <td>{{ record['Enrollment Number'] }}</td>
+            <td>{{ record['Student Name'] }}</td>
+            <td>{{ record['Timestamp'] }}</td>
+            <td>{{ record['Subject Code'] }}</td>
+            <td>{{ record['Subject Name'] }}</td>
+            <td>{{ record['Teacher'] }}</td>
+            <td>{{ record['Status'] }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="8" style="text-align: center;">No attendance records found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
